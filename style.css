@@ -1,0 +1,446 @@
+body {
+  background: rgb(85, 144, 189);
+  background: linear-gradient(
+    90deg,
+    rgba(85, 144, 189, 1) 0%,
+    rgba(108, 183, 240, 1) 54%,
+    rgba(182, 216, 242, 1) 82%
+  );
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Oswald", sans-serif;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+.pokemon-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.pokemon-block,
+.pokemon-block-back {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+}
+
+.img-container {
+  background-image: url("./blob.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.img-container img {
+  width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+  max-width: 100px; /* Limita el tamaño máximo de la imagen */
+  max-height: 100px; /* Limita la altura máxima de la imagen */
+}
+
+
+.pokemon-block p {
+  margin: 5px;
+}
+
+.name {
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+#spinner {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.pagination {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+
+}
+
+.card-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .card-container {
+  transform: rotateY(180deg);
+}
+
+.pokemon-block,
+.pokemon-block-back {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.pokemon-block-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0%;
+}
+
+.stat-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  text-align: left;
+}
+
+#searchContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Estilo del input */
+#searchPokemon {
+  padding: 10px;
+  width: 250px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+#searchPokemon:focus {
+  border-color: #0078d7;
+  outline: none;
+}
+
+/* Estilo del botón */
+#pokeButton {
+  padding: 10px 15px;
+  background-color: #0078d7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#pokeButton:hover {
+  background-color:#239bf0;
+}
+
+#pokeButton:active {
+  transform: scale(0.95);
+}
+
+#volver{
+  margin-left: 10px;
+  padding: 10px 15px;
+  background-color: #0078d7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#volver:hover {
+  background-color: #239bf0;
+}
+
+#volver:active {
+  transform: scale(0.95);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Estilo para los botones de imagen */
+#verNormal, #verEn3D {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4dff4d; /* Verde claro */
+  color: white; /* Color del texto en blanco */
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#verNormal:hover, #verEn3D:hover {
+  background-color: #76c776; /* Cambio de color al pasar el ratón */
+  transform: scale(1.05); /* Efecto de agrandamiento al pasar el ratón */
+}
+
+#verNormal:focus, #verEn3D:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra alrededor del botón al enfocarse */
+}
+
+#typeFilter { 
+  padding: 10px;
+   margin: 20px ;/* Espacio alrededor */ 
+   border-radius: 5px; 
+   background-color: #f0f8ff; /* Color de fondo */ 
+   border: 1px solid #ccc; 
+   font-size: 1em; 
+   cursor: pointer; 
+   transition: background-color 0.3s ease; 
+  } 
+  #typeFilter:hover { 
+    background-color: #e0f7fa; /* Cambio de color al pasar el ratón */ 
+  } 
+  #typeFilter:focus { 
+    outline: none; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra alrededor del select al enfocarse */ 
+}
+
+
+/* Estilos para la tarjeta seleccionada */
+.selected-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  max-width: 300px;
+  margin: 20px auto;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.selected-card .img-container img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.selected-card .abilities,
+.selected-card .moves {
+  width: 100%;
+  text-align: left;
+}
+
+.selected-card h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.selected-card p {
+  margin: 5px 0;
+  font-size: 1em;
+  color: #555;
+}
+
+.selected-card .stat-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.selected-card .stat-container .stat-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.selected-card .stat-container .stat-value {
+  color: #007bff;
+}
+
+/* Estilo para el botón "Ver Pokémon" */
+.view-button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Color de fondo azul */
+  color: white; /* Color del texto en blanco */
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: #0056b3; /* Cambio de color al pasar el ratón */
+}
+/* Estilo para el botón "Ver Pokémon" */
+.view-button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Color de fondo azul */
+  color: white; /* Color del texto en blanco */
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: #0056b3; /* Cambio de color al pasar el ratón */
+}
+.selected-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  max-width: 300px;
+  margin: 20px auto;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.selected-card .img-container img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.selected-card .abilities,
+.selected-card .moves {
+  width: 100%;
+  text-align: left;
+  margin-top: 10px; /* Añadir margen superior */
+}
+
+.selected-card h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.selected-card p {
+  margin: 5px 0;
+  font-size: 1em;
+  color: #555;
+}
+
+.selected-card .stat-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.selected-card .stat-container .stat-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.selected-card .stat-container .stat-value {
+  color: #007bff;
+}
+
+/* Estilo para el botón "Ver Pokémon" */
+.view-button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Color de fondo azul */
+  color: white; /* Color del texto en blanco */
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: #0056b3; /* Cambio de color al pasar el ratón */
+}
+
+.selected-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Permitir que los elementos se envuelvan si es necesario */
+}
+
+
+.description-container {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.abilities-moves-container {
+  flex: 1;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100% !important; /* Asegúrate de que el contenedor tenga suficiente espacio */
+}
+
+
+.evolutions-section {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.evolutions-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.evolution-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.evolution-sprite {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  padding: 5px;
+}
+
+.evolution-name {
+  margin-top: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.evolution-arrow {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #555;
+  margin: 0 10px;
+}
+
