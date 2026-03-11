@@ -26,7 +26,7 @@ volver.addEventListener('click', () => {
 containerVolver.appendChild(volver);
 
 const buttonImgNormal = document.createElement('button');
-buttonImgNormal.textContent = 'Ver Imágenes Normales';
+buttonImgNormal.textContent = 'Ver Imagenes Normales';
 buttonImgNormal.id = 'verNormal';
 buttonImgNormal.addEventListener('click', () => {
     currentView = 'normal';
@@ -433,13 +433,13 @@ function crearPokemon(pokemon) {
     card.appendChild(name);
 
     const cardBack = document.createElement("div");
-    cardBack.classList.add("pokemon-block-back");
+    cardBack.classList.add("pokemon-block-back",'view-back');
 
     cardBack.appendChild(progressBars(pokemon.stats));
 
     const verPokemon = document.createElement("button");
      verPokemon.textContent = "Ver Pokémon";
-     verPokemon.classList.add = ('view-button')
+     verPokemon.classList.add('view-button', 'btn-primary');
      cardBack.appendChild(verPokemon);
         
     cardContainer.appendChild(card);
